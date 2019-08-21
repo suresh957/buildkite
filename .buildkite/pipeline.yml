@@ -2,8 +2,7 @@ steps:
   - label: Select Cartlink
     agents:
       queue: raspberrypi
-    command:
-      - sudo /home/pi/buildkite/.buildkite/build.sh
+    command: "sudo /home/pi/buildkite/.buildkite/build.sh"
 
   - block: "Select CartLink"
     fields:
@@ -25,7 +24,7 @@ steps:
             value: "cartlink-6"
 
   - label: display selected cartlink
-    command: echo "$(/home/pi/.buildkite-agent/bin/buildkite-agent meta-data get "cartlink")"
+    command: "echo $(/home/pi/.buildkite-agent/bin/buildkite-agent meta-data get "cartlink")"
 
   - block: "Select Device"
     fields:

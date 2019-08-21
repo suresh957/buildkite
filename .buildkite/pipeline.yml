@@ -20,7 +20,10 @@ steps:
             value: "cartlink-5"
           - label: "Cartlink-6"
             value: "cartlink-6"
-
+            
+  - label: Select Cartlink
+    command: "/home/pi/.buildkite-agent/bin/buildkite-agent meta-data set "cartlink" cartlink "
+    
   - block: "Select Device"
     fields:
       - select: "Device"

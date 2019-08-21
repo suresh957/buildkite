@@ -12,7 +12,7 @@ steps:
   - block: "Select CartLink"
     fields:
       - select: "Stream"
-        key: "release-stream"
+        key: "cartlink"
         options:
           - label: "Cartlink-1"
             value: "cartlink-1"
@@ -30,9 +30,30 @@ steps:
   - block: "Select Device"
     fields:
       - select: "Stream"
-        key: "release-stream"
+        key: "device"
         options:
           - label: "Linaro"
             value: "linaro"
           - label: "Android"
             value: "android"
+            
+  - block: "Deploy To"
+    fields:
+      - select: "Regions"
+        key: "deploy-regions"
+        hint: "Which regions should we deploy this to? :earth_asia:"
+        multiple: true
+        default:
+          - "na"
+          - "eur"
+          - "asia"
+          - "aunz"
+        options:
+          - label: "North America"
+            value: "na"
+          - label: "Europe"
+            value: "eur"
+          - label: "Asia"
+            value: "asia"
+          - label: "Oceania"
+            value: "aunz"

@@ -1,7 +1,4 @@
 steps:
-  - label: Select Cartlink
-    command: "/home/pi/buildkite/.buildkite/build.sh"
-
   - block: "Select CartLink"
     fields:
       - select: "Cart-Link"
@@ -20,9 +17,6 @@ steps:
             value: "cartlink-5"
           - label: "Cartlink-6"
             value: "cartlink-6"
-            
-  - label: Select Cartlink
-    command: "echo $value"
     
   - block: "Select Device"
     fields:
@@ -34,6 +28,9 @@ steps:
             value: "linaro"
           - label: "Android"
             value: "android"
+            
+  - label: Select Cartlink
+    command: "/home/pi/buildkite/.buildkite/build.sh"
 
   - block: "Request Release"
     fields:

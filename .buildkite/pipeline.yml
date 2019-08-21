@@ -4,7 +4,7 @@ steps:
     agents:
       queue: raspberypi
     command:
-      - ".buildkite/build.sh"
+      - "/home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh"
 
   - block: "Request Release"
     fields:

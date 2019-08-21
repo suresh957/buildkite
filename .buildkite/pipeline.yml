@@ -46,4 +46,4 @@ steps:
             value: "tablet"
             
   - label: Cartlink Flash
-    command: "echo device flashing!"
+    command: "/home/pi/buildkite/.buildkite/device.sh"

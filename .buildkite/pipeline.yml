@@ -1,4 +1,22 @@
 steps:
+  - block: "Select CartLink"
+    fields:
+      - select: "Stream"
+        key: "release-stream"
+        options:
+          - label: "Cartlink-1"
+            value: "cartlink-1"
+          - label: "Cartlink-2"
+            value: "cartlink-2"
+          - label: "Cartlink-3"
+            value: "cartlink-3"
+          - label: "Cartlink-4"
+            value: "cartlink-4"
+          - label: "Cartlink-5"
+            value: "cartlink-5"
+          - label: "Cartlink-6"
+            value: "cartlink-6"
+
   - label: Select Cartlink
     timeout_in_minutes: 10
     concurrency: 1
@@ -9,80 +27,12 @@ steps:
     command:
       - "/home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh"
 
-  - block: "Request Release"
-    fields:
-      - text: "Code Name"
-        key: "release-name"
-        hint: "What’s the code name for this release? :name_badge:"
-        required: false
-        default: "Release #"
-        
-  - block: "Request Release"
+  - block: "Select Device"
     fields:
       - select: "Stream"
         key: "release-stream"
         options:
-          - label: "Beta"
-            value: "beta"
-          - label: "Stable"
-            value: "stable"
-
-  - block: push
-    # branches: master
-
-  - label: Upload docker image
-    timeout_in_minutes: 10
-    concurrency: 1
-    concurrency_group: "link-iot-server"
-    # branches: master
-    agents:
-      queue: link-aws-dev
-    command:
-      - ".buildkite/swarm-upload.sh"
-    env:
-      LINK_ENV: dev
-
-  - block: Deploy to dev
-    # branches: master
-
-  - label: dev ds deploy
-    timeout_in_minutes: 5
-    concurrency: 1
-    concurrency_group: "link-iot-server"
-    command:
-      - ".buildkite/swarm-deploy.sh"
-    # branches: master
-    agents:
-      - queue=link-aws-dev
-    env:
-      LINK_ENV: dev
-
-  - block: Deploy to qa
-    branches: master
-
-  - label: QA ds deploy
-    timeout_in_minutes: 5
-    concurrency: 1
-    concurrency_group: "link-iot-server"
-    command:
-      - ".buildkite/swarm-deploy.sh"
-    branches: master
-    agents:
-      - queue=link-aws-qa-nyc
-    env:
-      LINK_ENV: qa
-
-  - block: Deploy to Prod
-    branches: master
-
-  - label: Prod ds deploy
-    timeout_in_minutes: 5
-    concurrency: 1
-    concurrency_group: "link-iot-server"
-    command:
-      - ".buildkite/swarm-deploy.sh"
-    branches: master
-    agents:
-      - queue=link-aws-prod-nyc
-    env:
-      LINK_ENV: prod
+          - label: "Linaro"
+            value: "linaro"
+          - label: "Android"
+            value: "android"

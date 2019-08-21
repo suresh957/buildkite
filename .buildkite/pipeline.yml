@@ -1,16 +1,13 @@
 steps:
-  - label: Build docker image
+  - label: Select Cartlink
     timeout_in_minutes: 10
     concurrency: 1
     concurrency_group: "link-iot-server"
     timeout_in_minutes: 10
     agents:
-      queue: link-aws-dev
+      queue: raspberrypi
     command:
-      - ".buildkite/build.sh"
-    env:
-      PRIMUS_TRANSFORMER: browserchannel
-      SERVER_PORT: 80
+      - "/home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh"
 
   - block: push
     # branches: master

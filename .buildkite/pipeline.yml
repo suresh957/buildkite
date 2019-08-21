@@ -5,7 +5,6 @@ steps:
         key: "cartlink"
         hint: "Select Cartlink to flash."
         required: true
-        multiple: true
         options:
           - label: "Cartlink-1"
             value: "cartlink-1"

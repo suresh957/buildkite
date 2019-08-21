@@ -18,9 +18,13 @@ steps:
           - label: "Cartlink-6"
             value: "cartlink-6"
     
+  - wait
+  
   - block: ":closed_lock_with_key: CartLink"
     prompt: ":warning:Please select the unit to flash:warning:"  
     
+  - wait
+  
   - block: "Select Device"
     fields:
       - select: "Device"

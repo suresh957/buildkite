@@ -6,14 +6,12 @@ steps:
     timeout_in_minutes: 10
     agents:
       queue: raspberrypi
-    command:
-      - "/home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh"
-
+      
   - block: "Select CartLink"
     fields:
       - select: "Cart-Link"
         key: "cartlink"
-        hint: "Select Cartlink to flash ? :nyc_link:"
+        hint: "Select Cartlink to flash."
         options:
           - label: "Cartlink-1"
             value: "cartlink-1"
@@ -32,7 +30,7 @@ steps:
     fields:
       - select: "Device"
         key: "device"
-        hint: "Select Device to flash ? :device:"
+        hint: "Select Device to flash."
         options:
           - label: "Linaro"
             value: "linaro"

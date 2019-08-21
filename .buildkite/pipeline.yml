@@ -1,0 +1,16 @@
+steps:
+  - label: Example Test
+      command: echo "Hello!"
+
+  - label: CartLink Flash
+    timeout_in_minutes: 10
+    concurrency: 1
+    agents:
+      queue: suresh-Vostro-5568
+    command:
+      - ".buildkite/build.sh"
+
+  - block: "Request Release"
+    fields:
+      - text: "Code Name"
+        key: "release-name"

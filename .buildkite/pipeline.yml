@@ -9,6 +9,24 @@ steps:
     command:
       - "/home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh"
 
+  - block: "Request Release"
+    fields:
+      - text: "Code Name"
+        key: "release-name"
+        hint: "What’s the code name for this release? :name_badge:"
+        required: false
+        default: "Release #"
+        
+  - block: "Request Release"
+    fields:
+      - select: "Stream"
+        key: "release-stream"
+        options:
+          - label: "Beta"
+            value: "beta"
+          - label: "Stable"
+            value: "stable"
+
   - block: push
     # branches: master
 

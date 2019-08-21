@@ -1,9 +1,3 @@
-env:
-  APPNAME: link-iot-server
-  REPOSITORY_ACCOUNT_ID: "028957328603"
-  REPOSITORY_NAME: intersection/link-iot-server
-  ANSIBLE_CONFIG: ansible/ansible.cfg
-
 steps:
   - label: Build docker image
     timeout_in_minutes: 10

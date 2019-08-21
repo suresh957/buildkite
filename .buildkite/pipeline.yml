@@ -3,7 +3,7 @@ steps:
     timeout_in_minutes: 10
     concurrency: 1
     agents:
-      queue: suresh-Vostro-5568
+      queue: raspberypi
     command:
       - ".buildkite/build.sh"
 

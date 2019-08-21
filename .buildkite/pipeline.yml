@@ -2,7 +2,7 @@ steps:
   - label: Select Cartlink
     agents:
       queue: raspberrypi
-    command: "sudo /home/pi/buildkite/.buildkite/build.sh"
+    command: "/home/pi/buildkite/.buildkite/build.sh"
 
   - block: "Select CartLink"
     fields:

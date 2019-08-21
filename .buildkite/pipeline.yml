@@ -27,7 +27,9 @@ steps:
             value: "cartlink-5"
           - label: "Cartlink-6"
             value: "cartlink-6"
-    message: "You have selected $cartlink"
+
+  - label: display selected cartlink
+    command: "echo $cartlink"
 
   - block: "Select Device"
     fields:

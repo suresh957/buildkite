@@ -1,12 +1,79 @@
+env:
+  APPNAME: link-iot-server
+  REPOSITORY_ACCOUNT_ID: "028957328603"
+  REPOSITORY_NAME: intersection/link-iot-server
+  ANSIBLE_CONFIG: ansible/ansible.cfg
+
 steps:
-  - label: CartLink Flash
+  - label: Build docker image
+    timeout_in_minutes: 10
+    concurrency: 1
+    concurrency_group: "link-iot-server"
     timeout_in_minutes: 10
     agents:
-      queue: raspberypi
+      queue: link-aws-dev
     command:
-      - "/home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh"
+      - ".buildkite/build.sh"
+    env:
+      PRIMUS_TRANSFORMER: browserchannel
+      SERVER_PORT: 80
 
-  - block: "Request Release"
-    fields:
-      - text: "Code Name"
-        key: "release-name"
+  - block: push
+    # branches: master
+
+  - label: Upload docker image
+    timeout_in_minutes: 10
+    concurrency: 1
+    concurrency_group: "link-iot-server"
+    # branches: master
+    agents:
+      queue: link-aws-dev
+    command:
+      - ".buildkite/swarm-upload.sh"
+    env:
+      LINK_ENV: dev
+
+  - block: Deploy to dev
+    # branches: master
+
+  - label: dev ds deploy
+    timeout_in_minutes: 5
+    concurrency: 1
+    concurrency_group: "link-iot-server"
+    command:
+      - ".buildkite/swarm-deploy.sh"
+    # branches: master
+    agents:
+      - queue=link-aws-dev
+    env:
+      LINK_ENV: dev
+
+  - block: Deploy to qa
+    branches: master
+
+  - label: QA ds deploy
+    timeout_in_minutes: 5
+    concurrency: 1
+    concurrency_group: "link-iot-server"
+    command:
+      - ".buildkite/swarm-deploy.sh"
+    branches: master
+    agents:
+      - queue=link-aws-qa-nyc
+    env:
+      LINK_ENV: qa
+
+  - block: Deploy to Prod
+    branches: master
+
+  - label: Prod ds deploy
+    timeout_in_minutes: 5
+    concurrency: 1
+    concurrency_group: "link-iot-server"
+    command:
+      - ".buildkite/swarm-deploy.sh"
+    branches: master
+    agents:
+      - queue=link-aws-prod-nyc
+    env:
+      LINK_ENV: prod

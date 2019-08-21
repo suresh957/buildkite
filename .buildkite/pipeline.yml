@@ -23,9 +23,6 @@ steps:
           - label: "Cartlink-6"
             value: "cartlink-6"
 
-  - label: display selected cartlink
-    command: "echo $(/home/pi/.buildkite-agent/bin/buildkite-agent meta-data get "cartlink")"
-
   - block: "Select Device"
     fields:
       - select: "Device"

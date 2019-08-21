@@ -3,7 +3,7 @@ steps:
     agents:
       queue: raspberrypi
     command:
-      - echo "Hello world!"
+      - sudo /home/pi/buildkite/.buildkite/build.sh
 
   - block: "Select CartLink"
     fields:

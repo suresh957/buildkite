@@ -1,5 +1,7 @@
 steps:
   - block: "Select CartLink"
+    concurrency: 1
+    concurrency_group: "tests"
     fields:
       - select: "Cart-Link"
         key: "cartlink"
@@ -26,6 +28,8 @@ steps:
   - wait
   
   - block: "Select Device"
+    concurrency: 1
+    concurrency_group: "tests"
     fields:
       - select: "Device"
         key: "device"

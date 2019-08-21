@@ -29,7 +29,7 @@ steps:
             value: "cartlink-6"
 
   - label: display selected cartlink
-    command: "echo $(buildkite-agent meta-data get "cartlink")"
+    command: echo "$(/home/pi/.buildkite-agent/bin/buildkite-agent meta-data get "cartlink")"
 
   - block: "Select Device"
     fields:
@@ -41,3 +41,8 @@ steps:
             value: "linaro"
           - label: "Android"
             value: "android"
+
+  - block: "Request Release"
+    fields:
+      - text: "cartlink Name"
+        key: "release-name"

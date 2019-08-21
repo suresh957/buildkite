@@ -22,7 +22,7 @@ steps:
   - block: ":closed_lock_with_key: CartLink"
     prompt: ":warning:Please select the unit to flash:warning:"  
     
-  - block: "Select Device"
+  - block: "Select Uint"
     fields:
       - select: "Device"
         key: "device"
@@ -37,13 +37,5 @@ steps:
           - label: "Tablet"
             value: "tablet"
             
-  - label: Select Cartlink
-    command: "/home/pi/buildkite/.buildkite/build.sh"
-
-  - block: "Request Release"
-    fields:
-      - text: "cartlink Name"
-        key: "release-name"
-       
-  - label: Select Cartlink
-    command: "echo release-name"
+  - label: Cartlink Flash
+    command: "echo device flashing!"

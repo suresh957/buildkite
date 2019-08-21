@@ -22,7 +22,6 @@ steps:
   - block: ":closed_lock_with_key: CartLink"
     prompt: ":warning:Please select the unit to flash:warning:"  
     
-  - trigger:  
   - block: "Select Device"
     fields:
       - select: "Device"

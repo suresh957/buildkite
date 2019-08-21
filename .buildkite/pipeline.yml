@@ -1,7 +1,6 @@
 steps:
   - label: CartLink Flash
     timeout_in_minutes: 10
-    concurrency: 1
     agents:
       queue: raspberypi
     command:

@@ -35,6 +35,7 @@ steps:
       - select: "Device"
         key: "device"
         hint: "Select Device to flash."
+        multiple: true
         options:
           - label: "ADL"
             value: "adl"

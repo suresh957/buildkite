@@ -52,5 +52,5 @@ steps:
             
   - label: Cartlink Flash
     agents:
-       queue: ${CARTLINK}
+       queue: "queue=${CARTLINK}"
     command: "/home/pi/buildkite/.buildkite/device.sh"

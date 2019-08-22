@@ -47,4 +47,6 @@ steps:
             value: "tablet"
             
   - label: Cartlink Flash
+    agents:
+       queue: {{ DEVICE }}
     command: "/home/pi/buildkite/.buildkite/device.sh"

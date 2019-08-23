@@ -55,7 +55,7 @@ steps:
     concurrency_group: "link-iot-server"
     agents:
       - queue=cartlink-1
-    command: "echo $BUILDKITE_AGENT_NAME"
+    command: "echo $BUILDKITE_AGENT_META_DATA_QUEUE"
     
   - label: Show Details 
     concurrency: 1

@@ -1,20 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -eu
+set -euo pipefail
 
-echo "steps:"
-
-# A step for each dir in specs/
-
-find specs/* -type d | while read -r D; do
-  echo "  - command: \"$D/test.sh\""
-  echo "    label: \"$(basename "$D")\""
-done
-
-# A deploy step only if it's the master branch
-
-if [[ "$BUILDKITE_BRANCH" == "master" ]]; then
-  echo "  - wait"
-  echo "  - command: \"echo Deploy!\""
-  echo "    label: \":rocket:\""
-fi
+cat << EOF
+steps:
+  - label: "Download Artifacts and initiate tests"
+    command:
+      - "echo this is test file"
+    agents:
+      queue: link-mobile
+  - block: "Check AWS Results"
+  - label: "Checking Results from aws DeviceFarm"
+    command:
+      - "echo ${BUILDKITE_BUILD_NUMBER}"
+    agents:
+      queue: link-mobile
+EOF

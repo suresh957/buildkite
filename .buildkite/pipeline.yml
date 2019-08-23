@@ -54,12 +54,12 @@ steps:
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents:
-      - queue="$BUILDKITE_AGENT_META_DATA_QUEUE"
+      - queue="${BUILDKITE_AGENT_META_DATA_QUEUE}"
     command: "echo $(buildkite-agent meta-data get cartlink)"
     
   - label: Show Details 
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents:
-      - queue="$BUILDKITE_AGENT_META_DATA_QUEUE"
+      - queue="${BUILDKITE_AGENT_META_DATA_QUEUE}"
     command: "/bin/bash ${BUILDKITE_BUILD_CHECKOUT_PATH}/.buildkite/device.sh "

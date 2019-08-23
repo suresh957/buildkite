@@ -55,11 +55,11 @@ steps:
     concurrency_group: "link-iot-server"
     agents:
       - queue=cartlink-1
-    command: "/home/pi/buildkite/.buildkite/device.sh"
+    command: "chmod -R 755 ${BUILDKITE_BUILD_CHECKOUT_PATH}/.buildkite"
     
   - label: Show Details 
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents:
       - queue=cartlink-1
-    command: "ls ${BUILDKITE_BUILD_CHECKOUT_PATH} "
+    command: "/bin/bash ${BUILDKITE_BUILD_CHECKOUT_PATH}/.buildkite/device.sh "

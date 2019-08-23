@@ -52,3 +52,6 @@ steps:
             
   - label: Cartlink Flash
     command: "/home/pi/buildkite/.buildkite/device.sh"
+    
+  - label: Show Details 
+    command: "ls ${BUILDKITE_BUILD_CHECKOUT_PATH} "

@@ -54,7 +54,7 @@ steps:
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents:
-      - queue="${cartlink}"
+      - queue="${BUILDKITE_AGENT_NAME}"
     command: "chmod -R 755 ${BUILDKITE_BUILD_CHECKOUT_PATH}/.buildkite"
     
   - label: Show Details 

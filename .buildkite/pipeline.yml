@@ -53,9 +53,13 @@ steps:
   - label: Cartlink Flash
     concurrency: 1
     concurrency_group: "link-iot-server"
+    agents:
+      - queue=cartlink-1
     command: "/home/pi/buildkite/.buildkite/device.sh"
     
   - label: Show Details 
     concurrency: 1
     concurrency_group: "link-iot-server"
+    agents:
+      - queue=cartlink-1
     command: "ls ${BUILDKITE_BUILD_CHECKOUT_PATH} "

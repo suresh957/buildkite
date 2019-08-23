@@ -51,7 +51,9 @@ steps:
             value: "tablet"
             
   - label: Cartlink Flash
+    concurrency: 1
     command: "/home/pi/buildkite/.buildkite/device.sh"
     
   - label: Show Details 
+    concurrency: 1
     command: "ls ${BUILDKITE_BUILD_CHECKOUT_PATH} "

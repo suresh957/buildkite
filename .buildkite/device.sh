@@ -9,3 +9,4 @@ DEVICE=$(buildkite-agent meta-data get device)
 echo "Details below!"
 echo $CART_LINK
 echo $DEVICE
+echo $BUILDKITE_AGENT_NAME

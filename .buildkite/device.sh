@@ -1,3 +1,5 @@
+cd $BUILDKITE_BUILD_CHECKOUT_PATH
+ls
 CART_LINK=$(buildkite-agent meta-data get cartlink)
 DEVICE=$(buildkite-agent meta-data get device)
 

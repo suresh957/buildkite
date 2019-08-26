@@ -57,7 +57,7 @@ steps:
        cartlink=1
     command: echo "${CARTLINK}"
     env:
-      CARTLINK: "${buildkite-agent meta-data get cartlink}"
+      CARTLINK: ${buildkite-agent meta-data get cartlink}
     
   - label: Show Details 
     concurrency: 1

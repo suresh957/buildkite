@@ -60,7 +60,8 @@ steps:
   - label: Show Details 
     concurrency: 1
     concurrency_group: "link-iot-server"
-    agents: "${buildkite-agent meta-data get cartlink}"
+    agents: 
+       cartlink=3
     command: "echo $CARTLINK"
     env:
-      CARTLINK: "$(buildkite-agent meta-data get cartlink)"
+      CARTLINK: "${buildkite-agent meta-data get cartlink}"

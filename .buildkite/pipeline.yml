@@ -30,9 +30,7 @@ steps:
             value: "cartlink-9"
           - label: "Cartlink-10"
             value: "cartlink-10"
-  
-  - wait 
-  
+    
   - block: ":closed_lock_with_key: CartLink"
     prompt: ":warning:Please select the unit to flash:warning:"  
     
@@ -59,8 +57,8 @@ steps:
        cartlink=1
     command: echo ${CARTLINK}
     env:
-      CARTLINK: ${buildkite-agent meta-data get cartlink}
-    
+      CARTLINK: "cartlink=3"
+      
   - label: Show Details 
     concurrency: 1
     concurrency_group: "link-iot-server"

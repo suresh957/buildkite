@@ -63,6 +63,5 @@ steps:
     agents:
        "$$CARTLINK"
     command: "echo $CARTLINK"
-    command: "echo $(buildkite-agent meta-data get cartlink)"
     env:
       CARTLINK: "$(buildkite-agent meta-data get cartlink)"

@@ -50,18 +50,18 @@ steps:
           - label: "Tablet"
             value: "tablet"
             
-  - label: Cartlink Flash
+  - label: Update Agent
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents:
        cartlink: 1
-    command: "echo $(buildkite-agent meta-data get cartlink)"
+    command: "/bin/bash ${BUILDKITE_BUILD_CHECKOUT_PATH}/.buildkite/device.sh "
     
   - label: Show Details 
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents:
-       cartlink: 2
+       cartlink: 1
     command: "/bin/bash ${BUILDKITE_BUILD_CHECKOUT_PATH}/.buildkite/device.sh "
     command: "echo $CARTLINK"
     env:

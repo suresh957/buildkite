@@ -10,8 +10,8 @@ steps:
         hint: "Select Cartlink to flash."
         required: true
         options:
-          - label: "Cartlink-1"
-            value: "cartlink-1"
+          - label: "Cartlink=1"
+            value: "cartlink=1"
           - label: "Cartlink-2"
             value: "cartlink-2"
           - label: "Cartlink-3"

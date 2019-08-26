@@ -49,7 +49,9 @@ steps:
             value: "maint"
           - label: "Tablet"
             value: "tablet"
-            
+  
+  - wait
+  
   - label: Update Agent
     concurrency: 1
     concurrency_group: "link-iot-server"

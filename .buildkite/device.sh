@@ -10,6 +10,8 @@ echo "Details below!"
 echo $CART_LINK
 echo $DEVICE
 echo $BUILDKITE_AGENT_NAME
+
+sudo cat $BUILDKITE_BUILD_CHECKOUT_PATH/.buildkite/pipeline.yml
 sudo sed -i "s/cartlink-1/$CART_LINK/g" /etc/buildkite-agent/buildkite-agent.cfg
 git stash
 git checkout master

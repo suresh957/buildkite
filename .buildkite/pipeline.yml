@@ -61,7 +61,7 @@ steps:
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents:
-       cartlink: 1
+       cartlink: 2
     command: "/bin/bash ${BUILDKITE_BUILD_CHECKOUT_PATH}/.buildkite/device.sh "
     command: "echo $CARTLINK"
     env:

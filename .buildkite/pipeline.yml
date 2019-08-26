@@ -31,6 +31,8 @@ steps:
           - label: "Cartlink-10"
             value: "cartlink-10"
   
+  - wait 
+  
   - block: ":closed_lock_with_key: CartLink"
     prompt: ":warning:Please select the unit to flash:warning:"  
     

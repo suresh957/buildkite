@@ -64,6 +64,6 @@ steps:
     concurrency_group: "link-iot-server"
     agents: 
        ${CARTLINK}
-    command: echo "${CARTLINK}"
+    command: echo ${CARTLINK}
     env:
       CARTLINK: cartlink=1

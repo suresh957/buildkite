@@ -57,7 +57,7 @@ steps:
     concurrency_group: "link-iot-server"
     agents:
        cartlink=1
-    command: echo $(buildkite-agent meta-data set cartlink)
+    command: $(buildkite-agent meta-data set cartlink)
       
   - label: Show Details 
     concurrency: 1

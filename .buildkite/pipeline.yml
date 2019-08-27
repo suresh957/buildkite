@@ -63,14 +63,7 @@ steps:
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents: 
-       cartlink=1
-    command: "echo ${cartlink}"
+       "${DEVICE}"
+    command: echo "${DEVICE}"
     env:
       CARTLINK: "${buildkite-agent meta-data get cartlink}"
-      
-  - trigger: "data-generator"
-    label: ":package: Generate data"
-    build:
-      meta_data:
-        release-version: "1.1"
-

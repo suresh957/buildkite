@@ -58,8 +58,6 @@ steps:
     agents:
        cartlink=1
     command: echo $(buildkite-agent meta-data set cartlink)
-    env:
-      CARTLINK: "echo $(buildkite-agent meta-data get cartlink)"
       
   - label: Show Details 
     concurrency: 1

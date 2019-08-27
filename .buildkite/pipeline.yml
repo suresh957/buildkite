@@ -67,3 +67,10 @@ steps:
     command: "echo ${cartlink}"
     env:
       CARTLINK: "${buildkite-agent meta-data get cartlink}"
+      
+  - trigger: "data-generator"
+    label: ":package: Generate data"
+    build:
+      meta_data:
+        release-version: "1.1"
+

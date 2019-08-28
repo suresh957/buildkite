@@ -1,10 +1,17 @@
 # .buildkite/pipeline.device.yml
 steps:
-- label: Flash Unit
-  concurrency: 1
-  concurrency_group: "link-iot-server"
-  agents:
-    # Target an agent which has been started like:
-    # buildkite-agent start --tags cartlink=cartlink-1
-    cartlink: $CARTLINK
-  command: .buildkite/device.sh $DEVICE
+  - label: test
+    agents:
+      cartlink=1
+    command: echo "Sample test"
+    
+  - label: Flash Unit
+    concurrency: 1
+    concurrency_group: "link-iot-server"
+    agents:
+      # Target an agent which has been started like:
+      # buildkite-agent start --tags cartlink=cartlink-1
+      cartlink: $CARTLINK
+    command: 
+      echo $CARTLINK
+      ./home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh

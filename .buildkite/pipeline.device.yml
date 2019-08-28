@@ -1,10 +1,5 @@
 # .buildkite/pipeline.device.yml
-steps:
-  - label: test
-    agents:
-      cartlink=1
-    command: echo $$CARTLINK
-    
+steps:  
   - label: Flash Unit
     concurrency: 1
     concurrency_group: "link-iot-server"

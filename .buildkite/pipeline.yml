@@ -55,5 +55,5 @@ steps:
         # upload so that the substitution will work later when it is run
         export CARTLINK="$$(buildkite-agent meta-data get cartlink)"
         export DEVICE="$$(buildkite-agent meta-data get device)"
-        buildkite-agent pipeline upload .buildkite/pipeline.device.yml
+        buildkite-agent pipeline upload .buildkite/pileline.device.yml
 

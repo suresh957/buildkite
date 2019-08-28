@@ -45,9 +45,16 @@ steps:
             value: "maint"
           - label: "Tablet"
             value: "tablet"
+   
+  - label: Update Agent
+    concurrency: 1
+    concurrency_group: "link-iot-server"
+    agents:
+       cartlink=1
+    command: echo $(buildkite-agent meta-data get cartlink)
     
-  - label: "pipeline"
-      command: echo $(buildkite-agent meta-data get cartlink)
+  #- label: "pipeline"
+      #command: echo $(buildkite-agent meta-data get cartlink)
         # Grab the meta-data from the block step above and make it available
         # within the next pipeline upload command
         #

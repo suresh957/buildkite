@@ -3,7 +3,7 @@ steps:
   - label: test
     agents:
       cartlink=1
-    command: echo $CARTLINK
+    command: echo $$CARTLINK
     
   - label: Flash Unit
     concurrency: 1
@@ -12,6 +12,4 @@ steps:
       # Target an agent which has been started like:
       # buildkite-agent start --tags cartlink=cartlink-1
       $CARTLINK
-    command: 
-      echo $CARTLINK
-      /bin/bash /home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh
+    command: /bin/bash /home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh

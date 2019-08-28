@@ -1,7 +1,3 @@
-env:
-  CARTLINK: "${cartlink}"
-  DEVICE: device
-  
 steps:
   - block: "Select CartLink"
     fields:
@@ -49,21 +45,15 @@ steps:
             value: "maint"
           - label: "Tablet"
             value: "tablet"
-  
-  - wait
-  
-  - label: Update Agent
-    concurrency: 1
-    concurrency_group: "link-iot-server"
-    agents:
-       cartlink=1
-    command: echo $(buildkite-agent meta-data get cartlink)
-      
-  - label: Show Details 
-    concurrency: 1
-    concurrency_group: "link-iot-server"
-    agents: 
-       ${CARTLINK}
-    command: echo ${CARTLINK}
-    env:
-      CARTLINK: cartlink=1
+    
+  - label: ":pipeline:"
+      command: |
+        # Grab the meta-data from the block step above and make it available
+        # within the next pipeline upload command
+        #
+        # Note the double dollars which escapes to one dollar during the pipeline
+        # upload so that the substitution will work later when it is run
+        export CARTLINK="$$(buildkite-agent meta-data get cartlink)"
+        export DEVICE="$$(buildkite-agent meta-data get device)"
+        buildkite-agent pipeline upload .buildkite/pipeline.device.yml
+

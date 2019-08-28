@@ -6,5 +6,5 @@ steps:
     agents:
       # Target an agent which has been started like:
       # buildkite-agent start --tags cartlink=cartlink-1
-      $CARTLINK
+      cartlink: $CARTLINK
     command: /bin/bash /home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh

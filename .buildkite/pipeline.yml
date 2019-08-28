@@ -47,8 +47,7 @@ steps:
             value: "tablet"
     
   - label: "pipeline"
-      command:
-        echo $(buildkite-agent meta-data get cartlink)
+      command: echo $(buildkite-agent meta-data get cartlink)
         # Grab the meta-data from the block step above and make it available
         # within the next pipeline upload command
         #

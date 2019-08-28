@@ -3,7 +3,7 @@ steps:
   - label: test
     agents:
       cartlink=1
-    command: echo "Sample test"
+    command: echo $CARTLINK
     
   - label: Flash Unit
     concurrency: 1

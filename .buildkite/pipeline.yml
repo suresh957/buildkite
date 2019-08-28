@@ -47,14 +47,15 @@ steps:
             value: "tablet"
     
   - label: ":pipeline:"
-      command:
+      command: | 
         echo $(buildkite-agent meta-data get cartlink)
         # Grab the meta-data from the block step above and make it available
         # within the next pipeline upload command
         #
         # Note the double dollars which escapes to one dollar during the pipeline
         # upload so that the substitution will work later when it is run
-        export CARTLINK="$$(buildkite-agent meta-data get cartlink)"
+        #export CARTLINK="$$(buildkite-agent meta-data get cartlink)"
         #export DEVICE="$$(buildkite-agent meta-data get device)"
+        
         #/home/pi/.buildkite-agent/bin/buildkite-agent pipeline upload /home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/pileline.device.yml
 

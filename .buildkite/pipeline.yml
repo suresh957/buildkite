@@ -54,5 +54,6 @@ steps:
     command: echo $(buildkite-agent meta-data get cartlink)
     
   - label: ":pipeline:"
-      command: echo "sample"
+    command: |
+      echo "sample"
         

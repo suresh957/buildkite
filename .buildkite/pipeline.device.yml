@@ -14,4 +14,4 @@ steps:
       $CARTLINK
     command: 
       echo $CARTLINK
-      ./home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh
+      /bin/bash /home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/build.sh

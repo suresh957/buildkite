@@ -55,5 +55,5 @@ steps:
         # upload so that the substitution will work later when it is run
         export CARTLINK="$$(buildkite-agent meta-data get cartlink)"
         export DEVICE="$$(buildkite-agent meta-data get device)"
-        buildkite-agent pipeline upload .buildkite/pileline.device.yml
+        /home/pi/.buildkite-agent/bin/buildkite-agent pipeline upload /home/pi/.buildkite-agent/builds/raspberrypi-1/techwing/cartlink-flash/.buildkite/pileline.device.yml
 

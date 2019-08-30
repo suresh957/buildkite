@@ -53,6 +53,7 @@ steps:
        cartlink=cartlink-2
     command: echo $(buildkite-agent meta-data get cartlink)
     command: echo $BUILDKITE_BUILD_CHECKOUT_PATH
+    command: echo $BUILDKITE_BIN_PATH
     
   - label: ":pipeline:"
     command: |

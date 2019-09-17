@@ -16,11 +16,11 @@ extract_linaro_loc = local_path + '/linaro_files'
 extract_link_linaro_loc = local_path + '/link_linaro_files'
 
 andriod_loc = extract_andriod_loc + "/system_image-signed.zip"
-tarloc = extract_linaro_loc + "/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2.tar"
+tarloc = extract_linaro_loc + "/bootloaders.zip"
 img_loc = extract_link_linaro_loc + "/linaro-vivid-alip-comark-eMMC-1p3p4.img"
 
 andriod_file_name = 'system_image-signed.zip'
-linaro_bl_name = "eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2.tar"
+linaro_bl_name = "bootloaders.zip"
 linaro_fb_name = "linaro-vivid-alip-comark-eMMC-1p3p4.img"
 
 delete_andriod_loc = local_path + "/andriod_files"
@@ -31,18 +31,14 @@ delete_link_linaro_loc = local_path + "/link_linaro"
 def remove_files(file_path):
     delete_path = file_path+"/*"
     cmd = "sudo rm -rf " + delete_path
-    commands.getoutput(cmd)
+    result = commands.getoutput(cmd)
+    print(result)
     print("files are deleted")
-
-
-def delet_link_linaro(img_loc):
-    cmd = "sudo rm -rf " + img_loc
-    commands.getoutput(cmd)
 
 
 def erase_files():
     erase_logs = []
-    cmd_1 = "fastboot flash partition /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2/bootloader/gpt_both0.bin"
+    cmd_1 = "fastboot flash partition /home/pi/cartlink_flash/linaro_files/bootloaders/gpt_both0.bin"
     cmd_2 = "sleep 10"
     erase_command = ["fastboot erase modem", "fastboot erase sbl1", "fastboot erase sbl2", "fastboot erase sbl3",
                      "fastboot erase rpm", "fastboot erase tz", "fastboot erase aboot"]
@@ -63,17 +59,18 @@ def flash_linaro_tar_image():
     linaro_logs_list = []
     linaro_logs_list.append(erase_files())
     print("flashing bootloaders...")
-    cmd_1 = "fastboot flash modem /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2/bootloader/NON-HLOS.bin"
-    cmd_2 = "fastboot flash sbl1 /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2/bootloader/sbl1.mbn"
-    cmd_3 = "fastboot flash sbl2 /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2/bootloader/sbl2.mbn"
-    cmd_4 = "fastboot flash sbl3 /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2/bootloader/sbl3.mbn"
-    cmd_5 = "fastboot flash rpm /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2/bootloader/rpm.mbn"
-    cmd_6 = "fastboot flash tz /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2/bootloader/tz.mbn"
-    cmd_7 = "fastboot flash aboot /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2/bootloader/emmc_appsboot.mbn"
-    cmd_8 = "fastboot flash boot /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2/comark_boot.img"
+    cmd_1 = "fastboot flash modem /home/pi/cartlink_flash/linaro_files/bootloaders/NON-HLOS.bin"
+    cmd_2 = "fastboot flash sbl1 /home/pi/cartlink_flash/linaro_files/bootloaders/sbl1.mbn"
+    cmd_3 = "fastboot flash sbl2 /home/pi/cartlink_flash/linaro_files/bootloaders/sbl2.mbn"
+    cmd_4 = "fastboot flash sbl3 /home/pi/cartlink_flash/linaro_files/bootloaders/sbl3.mbn"
+    cmd_5 = "fastboot flash rpm /home/pi/cartlink_flash/linaro_files/bootloaders/rpm.mbn"
+    cmd_6 = "fastboot flash tz /home/pi/cartlink_flash/linaro_files/bootloaders/tz.mbn"
+    cmd_7 = "fastboot flash aboot /home/pi/cartlink_flash/linaro_files/bootloaders/emmc_appsboot.mbn"
+    cmd_8 = "fastboot flash boot /home/pi/cartlink_flash/linaro_files/bootloaders/comark_boot.img"
     linaro_flash_image_list = [cmd_1, cmd_2, cmd_3, cmd_4, cmd_5, cmd_6, cmd_7, cmd_8]
     for cmd in linaro_flash_image_list:
         result = commands.getoutput(cmd)
+        print(result)
         linaro_logs_list.append(result)
         print("{} flashing is done".format(cmd))
     return linaro_logs_list
@@ -83,6 +80,8 @@ def flash_linaro_image():
     linaro_image_file = "fastboot flash -S 700M userdata /home/pi/cartlink_flash/link_linaro_files" \
                         "/linaro-vivid-alip-comark-eMMC-1p3p4.img"
     result_linaro_image = commands.getoutput(linaro_image_file)
+    print("{} flashing is done".format(linaro_image_file))
+    print(result_linaro_image)
     return result_linaro_image
 
 
@@ -98,6 +97,7 @@ def flash_tablet_image_files():
     for cmd in andriod_cmd_list:
         result = commands.getoutput(cmd)
         tablet_logs_list.append(result)
+        print(result)
         print("{} flashing is done".format(cmd))
     return tablet_logs_list
 
@@ -105,8 +105,11 @@ def flash_tablet_image_files():
 def check_file_existance(path, file_name):
     file = pathlib.Path(path)
     if file.exists():
-       existed_file_md5_value = hashlib.md5(file_name.encode()).hexdigest() 
-       return existed_file_md5_value
+        existed_file_md5_value = commands.getoutput("md5sum {}".format(file_name))
+        print(existed_file_md5_value)
+        value = (existed_file_md5_value.split(' '))[0]
+        print(value)
+        return value
     else:
         return None
 
@@ -118,7 +121,7 @@ def extract_files(url, open_loc):
         f = open(open_loc, 'wb')
         meta = u.info()
         file_size = int(meta.getheaders("Content-Length")[0])
-        print "Downloading: %s Bytes: %s" % (file_name, file_size)
+        print("Downloading: %s Bytes: %s" % (file_name, file_size))
 
         file_size_dl = 0
         block_sz = 8192
@@ -133,7 +136,7 @@ def extract_files(url, open_loc):
             status = status + chr(8) * (len(status) + 1)
         return True
     except Exception as e:
-        print ("Downloading is failed due to : {}".format(e))
+        print("Downloading is failed due to : {}".format(e))
         return None
 
 
@@ -152,8 +155,8 @@ def extract_tar_files(filename):
         print("extracting the file")
         tar_log_file = open('/home/pi/cartlink_flash/linaro_down_logs.txt', 'wb')
         result = commands.getoutput(
-            'tar -xvf /home/pi/cartlink_flash/linaro_files/eInfochips_comark_SBC_Ubuntu-Linux-BSP_Relv1.4.2.tar '
-            '--directory /home/pi/cartlink_flash/linaro_files ')
+            'unzip /home/pi/cartlink_flash/linaro_files/bootloaders.zip -d /home/pi/cartlink_flash/linaro_files ')
+        print(result)
         tar_log_file.write(str(result))
     else:
         print("unable to download and extract the file")
@@ -167,6 +170,7 @@ def extract_zip_file(file):
         zip_logs_file = open('/home/pi/cartlink_flash/android_download_logs.txt', 'w+')
         result = commands.getoutput(
             'unzip /home/pi/cartlink_flash/andriod_files/system_image-signed.zip -d /home/pi/cartlink_flash/andriod_files')
+        print(result)
         zip_logs_file.write(result)
     else:
         print("unable to download and extract the file")
@@ -188,9 +192,11 @@ def steps_to_flash_device(component, latest_file_dict):
 
     if component == 'tablet':
         tablet_log_file = open('/home/pi/cartlink_flash/andriod_flash_logs.txt', 'w+')
-        result = check_file_existance(path=extract_andriod_loc, file_name=andriod_file_name)
+        result = check_file_existance(path=extract_andriod_loc, file_name=andriod_loc)
+        print("tablet md5", result)
+        print("existed file md5", tablet_andriod_md5)
         if result:
-            if result == tablet_andriod_md5:
+            if str(result) == str(tablet_andriod_md5):
                 tablet_logs = flash_tablet_image_files()
                 tablet_log_file.write(str(tablet_logs))
             else:
@@ -205,12 +211,14 @@ def steps_to_flash_device(component, latest_file_dict):
 
     elif component == 'adl' or component == 'adr' or component == 'maint':
 
-        result_tar = check_file_existance(path=extract_linaro_loc, file_name=linaro_bl_name)
-        result_img = check_file_existance(path=extract_link_linaro_loc, file_name=linaro_fb_name)
-
+        result_tar = check_file_existance(path=extract_linaro_loc, file_name=tarloc)
+        result_img = check_file_existance(path=extract_link_linaro_loc, file_name=img_loc)
         linaro_log_file = open("/home/pi/cartlink_flash/linaro_flash_logs.txt", 'w+')
+        print("result of existed file", result_img)
+        print("result of download image file",linaro_fs_md5)
         if result_tar:
-            if result_tar == linaro_s3_bl_md5:
+            if str(result_tar) == str(linaro_s3_bl_md5):
+                print("matched")
                 result = flash_linaro_tar_image()
                 linaro_log_file.write(str(result))
             else:
@@ -219,21 +227,22 @@ def steps_to_flash_device(component, latest_file_dict):
                 result = flash_linaro_tar_image()
                 linaro_log_file.write(str(result))
         else:
+            print("file not existed", result_tar)
             extract_tar_files(filename=linaro_s3_tar)
             result = flash_linaro_tar_image()
             linaro_log_file.write(str(result))
 
         if result_img:
-            if result_img == linaro_fs_md5:
+            if str(result_img) == str(linaro_fs_md5):
                 result = flash_linaro_image()
                 linaro_log_file.write(str(result))
             else:
                 remove_files(file_path=delete_link_linaro_loc)
-                delet_link_linaro(delete_link_linaro_loc)
                 extract_img_file(filename=linaro_fs_image)
                 result = flash_linaro_image()
                 linaro_log_file.write(str(result))
         else:
+            print("file not existed", result_img)
             extract_img_file(filename=linaro_fs_image)
             result = flash_linaro_image()
             linaro_log_file.write(str(result))
@@ -262,21 +271,52 @@ def flash_raspi(sbc_name, relay_name, relay_state):
         GPIO.output(unique_number, False)
 
 
+
+def check_fastboot_mode(component):
+    fastboot_device = commands.getoutput("fastboot devices")
+    print(fastboot_device)
+    len_fastboot_devices = len(fastboot_device)
+    for i in range(0, 6):
+        if len_fastboot_devices > 0:
+            return fastboot_device
+        else:
+            flash_raspi(component, 'fb', 'off')
+            time.sleep(5)
+            flash_raspi(component, 'pwr', 'off')
+            time.sleep(5)
+            flash_raspi(component, 'pwr', 'on')
+            time.sleep(5)
+            flash_raspi(component, 'fb', 'on')
+            time.sleep(5)
+            flash_raspi(component, 'pwr', 'off')
+            time.sleep(5)
+            flash_raspi(component, 'pwr', 'on')
+	    time.sleep(5)
+            fastboot_device = commands.getoutput("fastboot devices")
+            len_fastboot_devices = len(fastboot_device)
+    return None
+
 def reboot_flash_device(component):
     flash_raspi(component, 'fb', 'on')
     time.sleep(5)
     flash_raspi(component, 'pwr', 'off')
     time.sleep(5)
     flash_raspi(component, 'pwr', 'on')
-    latest_file_dic = open_json_file()
-    steps_to_flash_device(component, latest_file_dic)
     time.sleep(5)
-    flash_raspi(component, 'fb', 'off')
-    time.sleep(5)
-    flash_raspi(component, 'pwr', 'off')
-    time.sleep(5)
-    flash_raspi(component, 'pwr', 'on')
-
+    fastboot_status = check_fastboot_mode(component)
+    print(fastboot_status)
+    if fastboot_status:
+        latest_file_dic = open_json_file()
+        steps_to_flash_device(component, latest_file_dic)
+        time.sleep(5)
+        flash_raspi(component, 'fb', 'off')
+        time.sleep(5)
+        flash_raspi(component, 'pwr', 'off')
+        time.sleep(5)
+        flash_raspi(component, 'pwr', 'on')
+    else:
+        print("system is unable to enter fastboot mode, check once")
+        sys.exit()
 
 def create_directories():
     cmd_1 = 'mkdir -p /home/pi/cartlink_flash/andriod_files'

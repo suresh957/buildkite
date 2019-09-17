@@ -8,8 +8,8 @@ steps:
         options:
           - label: "Cartlink-1"
             value: "cartlink-1"
-          - label: "Cartlink-2"
-            value: "cartlink-2"
+          - label: "raspi-aa-000002"
+            value: "raspi-aa-000002"
           - label: "raspi-aa-000001"
             value: "raspi-aa-000001"
           - label: "Cartlink-4"
@@ -50,7 +50,7 @@ steps:
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents:
-       cartlink=raspi-aa-000001
+       cartlink: raspi-aa-000001
     command: echo $(buildkite-agent meta-data get cartlink)
     command: echo $BUILDKITE_BUILD_CHECKOUT_PATH
     command: echo $BUILDKITE_BIN_PATH

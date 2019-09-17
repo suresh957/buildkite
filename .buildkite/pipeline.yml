@@ -50,7 +50,7 @@ steps:
     concurrency: 1
     concurrency_group: "link-iot-server"
     agents:
-       cartlink: raspi-aa-000002
+       cartlink=raspi-aa-000002
     command: echo $(buildkite-agent meta-data get cartlink)
     command: echo $BUILDKITE_BUILD_CHECKOUT_PATH
     command: echo $BUILDKITE_BIN_PATH

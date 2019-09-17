@@ -4,38 +4,32 @@ steps:
       - select: "Cart-Link"
         key: "cartlink"
         hint: "Select Cartlink to flash."
-        required: true
         options:
-          - label: "Cartlink-1"
-            value: "cartlink-1"
-          - label: "raspi-aa-000002"
-            value: "raspi-aa-000002"
           - label: "raspi-aa-000001"
             value: "raspi-aa-000001"
-          - label: "Cartlink-4"
-            value: "cartlink-4"
-          - label: "Cartlink-5"
-            value: "cartlink-5"
-          - label: "Cartlink-6"
-            value: "cartlink-6"
-          - label: "Cartlink-7"
-            value: "cartlink-7"
-          - label: "Cartlink-8"
-            value: "cartlink-8"
-          - label: "Cartlink-9"
-            value: "cartlink-9"
-          - label: "Cartlink-10"
-            value: "cartlink-10"
-    
+          - label: "raspi-aa-000002"
+            value: "raspi-aa-000002"
+          - label: "raspi-aa-000003"
+            value: "raspi-aa-000003"
+          - label: "raspi-aa-000004"
+            value: "raspi-aa-000004"
+          - label: "raspi-aa-000005"
+            value: "raspi-aa-000005"
+          - label: "raspi-aa-000006"
+            value: "raspi-aa-000006"
+          - label: "raspi-aa-000007"
+            value: "raspi-aa-000007"
+          - label: "raspi-aa-000008"
+            value: "raspi-aa-000008"
+
   - block: ":closed_lock_with_key: CartLink"
-    prompt: ":warning:Please make sure you selected the cartlink to flash:warning:"  
-    
-  - block: "Select Uint"
+    prompt: ":warning: Please make sure you selected the cart link to flash the unit :warning:"
+
+  - block: "Select Unit"
     fields:
-      - select: "Device"
+      - select: "Unit"
         key: "device"
         hint: "Select Device to flash."
-        multiple: true
         options:
           - label: "ADL"
             value: "adl"
@@ -45,25 +39,10 @@ steps:
             value: "maint"
           - label: "Tablet"
             value: "tablet"
-   
-  - label: Update Agent
-    concurrency: 1
-    concurrency_group: "link-iot-server"
-    agents:
-       cartlink=raspi-aa-000002
-    command: echo $(buildkite-agent meta-data get cartlink)
-    command: echo $BUILDKITE_BUILD_CHECKOUT_PATH
-    command: echo $BUILDKITE_BIN_PATH
-    
+
   - label: ":pipeline:"
     command: |
-       echo "sample"
-       # Grab the meta-data from the block step above and make it available
-       # within the next pipeline upload command
-       #
-       # Note the double dollars which escapes to one dollar during the pipeline
-       # upload so that the substitution will work later when it is run
        export CARTLINK="$$(buildkite-agent meta-data get cartlink)"
        export DEVICE="$$(buildkite-agent meta-data get device)"
-       /home/pi/.buildkite-agent/bin/buildkite-agent pipeline upload $BUILDKITE_BUILD_CHECKOUT_PATH/.buildkite/pipeline.device.yml
-        
+       $BUILDKITE_BIN_PATH/buildkite-agent pipeline upload $BUILDKITE_BUILD_CHECKOUT_PATH/.buildkite/pipeline.device.yml
+

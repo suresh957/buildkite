@@ -28,7 +28,7 @@ steps:
             value: "cartlink-10"
     
   - block: ":closed_lock_with_key: CartLink"
-    prompt: ":warning:Please select the unit to flash:warning:"  
+    prompt: ":warning:Please make sure you selected the cartlink to flash:warning:"  
     
   - block: "Select Uint"
     fields:

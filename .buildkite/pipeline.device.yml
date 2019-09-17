@@ -1,10 +1,10 @@
 # .buildkite/pipeline.device.yml
-steps:  
+steps:
   - label: Flash Unit
     concurrency: 1
-    concurrency_group: "link-iot-server"
+    concurrency_group: "cartlink-server"
     agents:
       # Target an agent which has been started like:
-      # buildkite-agent start --tags cartlink=cartlink-1
+      # buildkite-agent start --tags cartlink=raspi-hostname
       cartlink: $CARTLINK
-    command: python /home/pi/raspi_flash.py $DEVICE
+    command: python $BUILDKITE_BUILD_CHECKOUT_PATH/raspi_flash.py $DEVICE

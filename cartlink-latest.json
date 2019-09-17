@@ -1,0 +1,8 @@
+{
+  "link_android": "https://s3.amazonaws.com/prv-cb-aws-s3-androidbuilds-us-east-1-dev/images/park/userdebug/v3.6.5-rc1-1565115912/system_image-signed.zip",
+  "link_android_md5": "5dc1f85268438a1cd9548d18421352fe",
+  "link_linaro_BL": "https://hyd-test.s3.us-east-2.amazonaws.com/bootloaders.zip",
+  "link_linaro_BL_md5": "6ce88c4f14f4f84ee9c0a91d7f7448c6",
+  "link_linaro_FS": "https://link-provisioning-assets.s3.amazonaws.com/linaro-vivid-alip-comark-eMMC-1p3p4.img",
+  "link_linaro_FS_md5": "b058233c13e22e88c5f8e07db3a933de"
+}

@@ -9,7 +9,7 @@ else
   sudo apt-get install python-pip
 fi
 
-pip install -r requirements.txt
+pip install -r $BUILDKITE_BUILD_CHECKOUT_PATH/requirements.txt
 
 #check adb tools installed or not
 if adb 2>&1 > /dev/null ; then

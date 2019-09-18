@@ -5,7 +5,7 @@ steps:
     concurrency_group: "cartlink-server"
     agents:
       cartlink: $CARTLINK
-    command: sudo chmod 755 $BUILDKITE_BUILD_CHECKOUT_PATH/raspi_flash_requirements.sh && /bin/bash $BUILDKITE_BUILD_CHECKOUT_PATH/raspi_flash-requirements.sh && export JSON_FILE_PATH= $$BUILDKITE_BUILD_CHECKOUT_PATH
+    command: sudo chmod 755 $BUILDKITE_BUILD_CHECKOUT_PATH/raspi_flash_requirements.sh && /bin/bash $BUILDKITE_BUILD_CHECKOUT_PATH/raspi_flash_requirements.sh && export JSON_FILE_PATH= $$BUILDKITE_BUILD_CHECKOUT_PATH
 
   - label: Flash Unit
     concurrency: 1

@@ -7,7 +7,7 @@ import sys
 import pathlib
 import commands
 import urllib2
-
+import os
 
 local_path = "/home/pi/cartlink_flash"
 
@@ -178,7 +178,9 @@ def extract_zip_file(file):
 
 
 def open_json_file():
-    with open("$BUILDKITE_BUILD_CHECKOUT_PATH/cartlink-latest.json") as json_file:
+    path = os.environ['JSON_FILE_PATH'])
+    file_path = path + "/cartlink-flash-doc"
+    with open(file_path) as json_file:
         latest_files_dict = json.load(json_file)
         return latest_files_dict
 
@@ -320,8 +322,6 @@ def reboot_flash_device(component):
         sys.exit()
 
 def create_directories():
-    print("Preparing Directories to Download the Images.")
-    print("=============================================")
     cmd_1 = 'mkdir -p /home/pi/cartlink_flash/andriod_files'
     cmd_2 = 'mkdir -p /home/pi/cartlink_flash/linaro_files'
     cmd_3 = 'mkdir -p /home/pi/cartlink_flash/link_linaro_files'

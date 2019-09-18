@@ -178,7 +178,7 @@ def extract_zip_file(file):
 
 
 def open_json_file():
-    with open("/usr/local/sbin/cartlink-latest.json") as json_file:
+    with open("cartlink-latest.json") as json_file:
         latest_files_dict = json.load(json_file)
         return latest_files_dict
 

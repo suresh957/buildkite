@@ -178,7 +178,7 @@ def extract_zip_file(file):
 
 
 def open_json_file():
-    path = os.environ['JSON_FILE_PATH'])
+    path = os.environ['JSON_FILE_PATH']
     file_path = path + "/cartlink-flash-doc"
     with open(file_path) as json_file:
         latest_files_dict = json.load(json_file)

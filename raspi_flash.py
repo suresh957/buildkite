@@ -79,6 +79,7 @@ def flash_linaro_tar_image():
 def flash_linaro_image():
     linaro_image_file = "fastboot flash -S 700M userdata /home/pi/cartlink_flash/link_linaro_files" \
                         "/linaro-vivid-alip-comark-eMMC-1p3p4.img"
+    print("Flashing ")
     result_linaro_image = commands.getoutput(linaro_image_file)
     print("{} flashing is done".format(linaro_image_file))
     print(result_linaro_image)
@@ -177,7 +178,7 @@ def extract_zip_file(file):
 
 
 def open_json_file():
-    with open("/home/pi/cartlink-latest.json") as json_file:
+    with open("$BUILDKITE_BUILD_CHECKOUT_PATH/cartlink-latest.json") as json_file:
         latest_files_dict = json.load(json_file)
         return latest_files_dict
 
@@ -319,6 +320,8 @@ def reboot_flash_device(component):
         sys.exit()
 
 def create_directories():
+    print("Preparing Directories to Download the Images.")
+    print("=============================================")
     cmd_1 = 'mkdir -p /home/pi/cartlink_flash/andriod_files'
     cmd_2 = 'mkdir -p /home/pi/cartlink_flash/linaro_files'
     cmd_3 = 'mkdir -p /home/pi/cartlink_flash/link_linaro_files'
@@ -333,7 +336,9 @@ def checking_process():
     if int(result) > 1:
         print('Found Device is flashing, exiting.')
         sys.exit()
-    print("Neither Device is in flashing process, process starting")
+    print("Neither Device is in flashing process, Process starting")
+    print("Do not stop or cancel the build job")
+    print("===================================")
 
 
 if len(sys.argv) > 1:

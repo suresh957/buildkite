@@ -44,5 +44,5 @@ steps:
     command: |
        export CARTLINK="$$(buildkite-agent meta-data get cartlink)"
        export DEVICE="$$(buildkite-agent meta-data get device)"
-       $BUILDKITE_BIN_PATH/buildkite-agent pipeline upload $BUILDKITE_BUILD_CHECKOUT_PATH/.buildkite/pipeline.device.yml
+       buildkite-agent pipeline upload $BUILDKITE_BUILD_CHECKOUT_PATH/.buildkite/pipeline.device.yml
 
